@@ -87,7 +87,7 @@ The following functions have proven useful when looking at AQAnnotations.  When 
 
 If you need to cite AnnotationQuery in your work, please use the following DOI:
 
+[![DOI](https://zenodo.org/badge/99150085.svg)](https://zenodo.org/badge/latestdoi/99150085)
 
-
-McBeath, Darin (2017). Elseiver Labs. AnnotationQuery [Computer Software];https://github.com/elsevierlabs-os/AnnotationQuery
+McBeath, Darin (2017). AnnotationQuery [Computer Software];https://github.com/elsevierlabs-os/AnnotationQuery
 
