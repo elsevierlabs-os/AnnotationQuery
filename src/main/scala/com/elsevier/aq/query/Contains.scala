@@ -33,7 +33,7 @@ object Contains {
                                   ($"L.docId" === $"R.docId" &&
                                    $"L.startOffset" <= $"R.startOffset" &&
                                    $"L.endOffset" >= $"R.endOffset" &&
-                                   !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType" && $"L.annotId" === $"R.annotId")),"leftouter")
+                                   !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType"  && $"L.startOffset" === $"R.startOffset" && $"L.endOffset" === $"R.endOffset")),"leftouter")
                             .filter($"R.docId".isNull)
                             .select($"L.*")
                             .as[AQAnnotation]
@@ -43,7 +43,7 @@ object Contains {
                                   ($"L.docId" === $"R.docId" &&
                                    $"L.startOffset" <= $"R.startOffset" &&
                                    $"L.endOffset" >= $"R.endOffset" &&
-                                   !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType" && $"L.annotId" === $"R.annotId")),"leftsemi")
+                                   !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType"  && $"L.startOffset" === $"R.startOffset" && $"L.endOffset" === $"R.endOffset")),"leftsemi")
                             .as[AQAnnotation]
     }
 

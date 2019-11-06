@@ -38,14 +38,14 @@ object Between {
                                     ($"L.docId" === $"R.docId" &&
                                      $"R.startOffset" >=  $"L.endOffset" && 
                                      $"R.startOffset" - $"L.endOffset" < dist &&
-                                     !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType" && $"L.annotId" === $"R.annotId")),"leftsemi")
+                                     !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType"  && $"L.startOffset" === $"R.startOffset" && $"L.endOffset" === $"R.endOffset")),"leftsemi")
                                    .as[AQAnnotation]
     
       intermediate2 = intermediate.as("L").join(left.as("R"),
                                            ($"L.docId" === $"R.docId" &&
                                             $"L.startOffset" >=  $"R.endOffset" && 
                                             $"L.startOffset" - $"R.endOffset" < dist &&
-                                            !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType" && $"L.annotId" === $"R.annotId")),"leftsemi")
+                                            !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType"  && $"L.startOffset" === $"R.startOffset" && $"L.endOffset" === $"R.endOffset")),"leftsemi")
                                           .as[AQAnnotation]  
     
       results = middle.as("L").join(intermediate2.as("R"),
@@ -63,13 +63,13 @@ object Between {
                                         ($"L.docId" === $"R.docId" &&
                                          $"R.startOffset" >=  $"L.endOffset" && 
                                          $"R.startOffset" - $"L.endOffset" < dist &&
-                                         !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType" && $"L.annotId" === $"R.annotId")),"leftsemi")
+                                         !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType"  && $"L.startOffset" === $"R.startOffset" && $"L.endOffset" === $"R.endOffset")),"leftsemi")
                                    .as[AQAnnotation]   
       results = intermediate.as("L").join(left.as("R"),
                                          ($"L.docId" === $"R.docId" &&
                                           $"L.startOffset" >=  $"R.endOffset" && 
                                           $"L.startOffset" - $"R.endOffset" < dist &&
-                                          !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType" && $"L.annotId" === $"R.annotId")),"leftsemi")
+                                          !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType"  && $"L.startOffset" === $"R.startOffset" && $"L.endOffset" === $"R.endOffset")),"leftsemi")
                                     .as[AQAnnotation]   
     }
   

@@ -28,12 +28,12 @@ object FilterSet {
     var query:String = ""
   
     if (annotSet != "") {
-      query += ("annotSet " + annotSetCompare + " \"" + annotSet.toLowerCase + "\"")
+      query += ("annotSet " + annotSetCompare + " \"" + annotSet + "\"")
     } else if (!annotSetArr.isEmpty) {
       if (annotSetCompare == "=") {
-        query += ("annotSet in " + "('" + annotSetArr.mkString("','").toLowerCase + "')")
+        query += ("annotSet in " + "('" + annotSetArr.mkString("','") + "')")
       } else {
-        query += ("annotSet not in " + "('" + annotSetArr.mkString("','").toLowerCase + "')")
+        query += ("annotSet not in " + "('" + annotSetArr.mkString("','") + "')")
       }
     }
 

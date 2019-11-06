@@ -28,12 +28,12 @@ object FilterType {
     var query:String = ""
   
     if (annotType != "") {
-      query += ("annotType " + annotTypeCompare + " \"" + annotType.toLowerCase + "\"")
+      query += ("annotType " + annotTypeCompare + " \"" + annotType + "\"")
     } else if (!annotTypeArr.isEmpty) {
       if (annotTypeCompare == "=") {
-        query += ("annotType in " + "('" + annotTypeArr.mkString("','").toLowerCase + "')")
+        query += ("annotType in " + "('" + annotTypeArr.mkString("','") + "')")
       } else {
-        query += ("annotType not in " + "('" + annotTypeArr.mkString("','").toLowerCase + "')")
+        query += ("annotType not in " + "('" + annotTypeArr.mkString("','") + "')")
       }
     }
 

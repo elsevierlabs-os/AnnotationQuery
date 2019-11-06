@@ -32,7 +32,7 @@ object Sequence {
                                 ($"L.docId" === $"R.docId" &&
                                  $"R.startOffset" >=  $"L.endOffset" && 
                                  $"R.startOffset" - $"L.endOffset" < dist &&
-                                 !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType" && $"L.annotId" === $"R.annotId")))
+                                 !($"L.annotSet" === $"R.annotSet" && $"L.annotType" === $"R.annotType"  && $"L.startOffset" === $"R.startOffset" && $"L.endOffset" === $"R.endOffset")))
                           .select($"L.docId", $"L.annotSet", $"L.annotId", $"L.startOffset", $"R.endOffset")                              
                           .withColumn("annotType",lit("seq"))
                           .withColumn("properties",lit(null))
