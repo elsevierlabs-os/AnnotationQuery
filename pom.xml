@@ -5,7 +5,7 @@
          
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.elsevier</groupId>
-  <artifactId>annotation-query</artifactId>
+  <artifactId>annotation-query_scala-2.12</artifactId>
   <version>1.0.2</version>
 
   <developers>
@@ -22,11 +22,11 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <scala.version>2.11.7</scala.version>
-    <scala.binary.version>2.11</scala.binary.version>
-    <scalatest.version>2.2.6</scalatest.version>
+    <scala.version>2.12.12</scala.version>
+    <scala.binary.version>2.12</scala.binary.version>
+    <scalatest.version>3.0.1</scalatest.version>
     <junit.version>4.12</junit.version>
-    <spark.version>2.4.1</spark.version>
+    <spark.version>3.0.0</spark.version>
   </properties>
 
   <repositories>
