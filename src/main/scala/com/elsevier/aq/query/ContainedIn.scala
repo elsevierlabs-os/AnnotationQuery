@@ -10,9 +10,8 @@ import com.elsevier.aq.annotations.AQAnnotation
  * We of course have to also match on the document id.  We ultimately return the contained annotations (A) that meet this criteria.  
  * There is also the option of negating the query (think Not Contains) so that we return only A where it is not contained in B. 
  */
-object ContainedIn {
+class ContainedIn(spark: SparkSession) {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

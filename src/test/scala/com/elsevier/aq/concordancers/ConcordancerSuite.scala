@@ -25,7 +25,14 @@ class ConcordancerSuite extends FunSuite {
  
   import spark.implicits._
   
+  val GetAQAnnotations = new GetAQAnnotations(spark)
+  val FilterType = new FilterType(spark)
+  val Concordancer = new Concordancer(spark)
+  val XMLConcordancer = new XMLConcordancer(spark)
+  val OrigPosLemConcordancer = new OrigPosLemConcordancer(spark)
+  
   // Genia annotations
+ 
   val geniaAnnots: Dataset[AQAnnotation] = GetAQAnnotations(spark.read.parquet("./src/test/resources/genia/").as[CATAnnotation], Array("orig", "lemma", "pos", "excludes"), Array("lemma", "pos"), Array("orig", "lemma"))
 
   // Original markup annotations

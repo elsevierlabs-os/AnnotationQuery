@@ -15,12 +15,9 @@ import com.elsevier.aq.annotations.CATAnnotation
  * If properties (name-value pairs from the CATAnnotation other column) are desired, you have the option of specifying an Array of names (from these name-value pairs).  
  * Additionally, you have the option of specifying if the values for these properties should be lower-cased and/or url decoded.
  */
-object GetAQAnnotations { 
+class GetAQAnnotations(spark: SparkSession) { 
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
-  
-
   
   /*
    * catAnnots - Dataset[CATAnnotation].
@@ -31,7 +28,7 @@ object GetAQAnnotations {
   */
 
   def apply(catAnnots:Dataset[CATAnnotation],  props:Array[String]=Array.empty[String], lcProps:Array[String]=Array.empty[String], decodeProps:Array[String]=Array.empty[String], numPartitions:Int=spark.conf.get("spark.sql.shuffle.partitions").toInt): Dataset[AQAnnotation] = {
-
+    
     val ORIG = "orig"
     val ORIG_ANNOT_ID = "origAnnotID"
     val PARENT_ID = "parentId"

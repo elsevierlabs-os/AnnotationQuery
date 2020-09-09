@@ -11,9 +11,8 @@ import com.elsevier.aq.annotations.AQAnnotation
  * A distance operator can also be optionally specified.  This would require an A annotation (startOffset) to occur n characters (or less) after the B annotation (endOffset). 
  * There is also the option of negating the query (think Not After) so that we return only A where it is not after B. 
  */
-object After {
+class After(spark: SparkSession) {
    
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

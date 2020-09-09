@@ -8,9 +8,8 @@ import com.elsevier.aq.annotations.AQAnnotation
  * Provide the ability to filter a property field with  a specified value in a Dataset of AQAnnotations. 
  * A single value or an array of values can be used for the filter comparison.
  */
-object FilterProperty {
+class FilterProperty(spark: SparkSession) {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

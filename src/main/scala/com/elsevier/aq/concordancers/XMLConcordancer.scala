@@ -15,11 +15,10 @@ import com.elsevier.aq.annotations.AQAnnotation
  * Also add the XML tags (in 'orange') that would have occurred in this string.  
  * Note, there are no guarantees that the XML will be well-formed.
  */
-object XMLConcordancer {
+class XMLConcordancer(spark: SparkSession) {
 
   val logger = org.apache.log4j.LogManager.getLogger("XMLConcordancer")
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

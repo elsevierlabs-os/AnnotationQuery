@@ -13,9 +13,8 @@ import com.elsevier.aq.annotations.AQAnnotation
 /**
  * This function will retrieve the xml for each AQAnnotation in the passed Dataset[AQAnnotation], populate the xml property with this value in the AQAnnotation, and return a Dataset[AQAnnotation] with the xml property populated.  
  */
-object HydrateXML  {
+class HydrateXML(spark: SparkSession)  {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

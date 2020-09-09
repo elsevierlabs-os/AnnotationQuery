@@ -9,9 +9,8 @@ import com.elsevier.aq.annotations.AQAnnotation
  * Provide the ability to find annotations (looking at their property) that are in the same document. The input is 2 Datasets of AQAnnotations. We will call them A and B. 
  * The purpose is to find those annotations in A that are in the same document as B and also match values on the specified property.
  */
-object MatchProperty {
+class MatchProperty(spark: SparkSession) {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

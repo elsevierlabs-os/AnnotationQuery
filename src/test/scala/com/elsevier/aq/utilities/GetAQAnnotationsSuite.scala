@@ -22,6 +22,8 @@ class GetAQAnnotationsSuite extends FunSuite {
   spark.sparkContext.setLogLevel("ERROR")
   
   import spark.implicits._
+  
+  val GetAQAnnotations = new GetAQAnnotations(spark)
 
   test("Check count of annotations") {
     val aqAnnots: Dataset[AQAnnotation] = GetAQAnnotations(spark.read.parquet("./src/test/resources/genia/").as[CATAnnotation], Array("orig", "lemma", "pos", "excludes"), Array("lemma", "pos"), Array("orig", "lemma"))

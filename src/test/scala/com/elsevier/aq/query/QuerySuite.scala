@@ -24,6 +24,23 @@ class QuerySuite extends FunSuite {
 
   import spark.implicits._
   
+  val GetAQAnnotations = new GetAQAnnotations(spark)
+  val FilterProperty = new FilterProperty(spark)
+  val RegexProperty = new RegexProperty(spark)
+  val FilterSet = new FilterSet(spark)
+  val FilterType = new FilterType(spark)
+  val Contains = new Contains(spark)
+  val ContainedIn = new ContainedIn(spark)
+  val Before = new Before(spark)
+  val After = new After(spark)
+  val Between = new Between(spark)
+  val Sequence = new Sequence(spark)
+  val Or = new Or(spark)
+  val And = new And(spark)
+  val MatchProperty = new MatchProperty(spark)
+  val Preceding = new Preceding(spark)
+  val Following = new Following(spark)
+  
   // Original Markup Annotations
   val omAnnots: Dataset[AQAnnotation] = GetAQAnnotations(spark.read.parquet("./src/test/resources/om/").as[CATAnnotation], Array("orig"), Array("orig"), Array("orig"))
 

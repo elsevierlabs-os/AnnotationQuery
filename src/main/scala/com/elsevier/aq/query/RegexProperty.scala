@@ -7,9 +7,8 @@ import com.elsevier.aq.annotations.AQAnnotation
 /**
  * Provide the ability to filter a property field using a regex expression in a Dataset of AQAnnotations.
  */
-object RegexProperty {
+class RegexProperty(spark: SparkSession) {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

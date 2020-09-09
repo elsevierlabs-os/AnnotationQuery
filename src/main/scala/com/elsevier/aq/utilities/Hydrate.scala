@@ -14,9 +14,8 @@ import com.elsevier.aq.annotations.AQAnnotation
  * Keep in mind that for 'text/word' annotations the orig column will already be populated with the 'original' text value so this may not be needed.  
  * However, if you are working with sentence annotations (and other similar annotations) this could prove to be very helpful. 
  */
-object Hydrate  {
+class Hydrate(spark: SparkSession)  {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

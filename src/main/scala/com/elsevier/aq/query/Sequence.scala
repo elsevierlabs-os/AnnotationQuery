@@ -12,9 +12,8 @@ import org.apache.spark.sql.functions._
  * For example, we set the annotType to "seq" and we use the A startOffset and the B endOffset.
  * A distance operator can also be optionally specified.  This would require an A annotation (endOffset) to occur n characters (or less) before the B annotation (startOffset).
  */
-object Sequence {
+class Sequence(spark: SparkSession) {
 
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
 
   /*

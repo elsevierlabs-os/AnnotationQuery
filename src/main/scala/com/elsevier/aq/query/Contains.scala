@@ -11,9 +11,8 @@ import com.elsevier.aq.annotations.AQAnnotation
  * We also deduplicate the A annotations as there could be many annotations from B that could be contained by an annotation in A but it only makes sense to return the unique container annotations.  
  * There is also the option of negating the query (think Not Contains) so that we return only A where it does not contain B. 
  */
-object Contains {
+class Contains(spark: SparkSession) {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

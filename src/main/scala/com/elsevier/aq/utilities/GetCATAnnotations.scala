@@ -14,9 +14,8 @@ import com.elsevier.aq.annotations.CATAnnotation
  * If specific properties (name-value pairs to set in the CATAnnotation other column) are desired, you have the option of specifying an Array of names (for these name-value pairs). 
  * Additionally, you have the option of specifying if the values for these name-value pairs that  should be url encoded.
  */
-object GetCATAnnotations {
+class GetCATAnnotations(spark: SparkSession) {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

@@ -7,9 +7,8 @@ import com.elsevier.aq.annotations.AQAnnotation
 /**
  * Provide the ability to combine (union) annotations. The input is 2 Datasets of AQAnnotations. The output is the union of these annotations.
  */
-object Or {
+class Or(spark: SparkSession) {
     
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

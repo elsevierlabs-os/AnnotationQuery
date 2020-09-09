@@ -8,9 +8,8 @@ import com.elsevier.aq.annotations.AQAnnotation
  * Provide the ability to find annotations that are in the same document. The input is 2 Datasets of AQAnnotations. We will call them A and B. 
  * The purpose is to find those annotations in A and B that are in the same document.  
  */
-object And {
+class And(spark: SparkSession) {
    
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

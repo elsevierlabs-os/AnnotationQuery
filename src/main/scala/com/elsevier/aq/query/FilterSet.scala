@@ -7,9 +7,8 @@ import com.elsevier.aq.annotations.AQAnnotation
 /**
  * Provide the ability to filter the annotation set field in a Dataset of AQAnnotations. 
  */
-object FilterSet {
+class FilterSet(spark: SparkSession) {
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

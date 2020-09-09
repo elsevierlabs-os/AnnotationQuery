@@ -23,6 +23,9 @@ class GetCATAnnotationsSuite extends FunSuite {
 
   import spark.implicits._
   
+  val GetAQAnnotations = new GetAQAnnotations(spark)
+  val GetCATAnnotations = new GetCATAnnotations(spark)
+  
   test("Check count of annotations") {
     val aqAnnots: Dataset[AQAnnotation] = GetAQAnnotations(spark.read.parquet("./src/test/resources/genia/").as[CATAnnotation], Array("orig", "lemma", "pos", "excludes"), Array("lemma", "pos"), Array("orig", "lemma"))
     val catAnnots: Dataset[CATAnnotation] = GetCATAnnotations(aqAnnots, Array("orig", "lemma", "pos"), Array("orig", "lemma"))

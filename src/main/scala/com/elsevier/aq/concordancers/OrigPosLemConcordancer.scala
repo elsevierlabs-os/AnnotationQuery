@@ -12,11 +12,10 @@ import com.elsevier.aq.annotations.AQAnnotation
  * Output the string of text identified by the AQAnnotation (typically a sentence annotation). 
  * Below the sentence (in successive rows) output the original terms, parts of speech, and lemma terms for the text identified by the AQAnnotation.
  */
-object OrigPosLemConcordancer {
+class OrigPosLemConcordancer(spark: SparkSession) {
 
   val logger = org.apache.log4j.LogManager.getLogger("OrigPosLemConcordancer")
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

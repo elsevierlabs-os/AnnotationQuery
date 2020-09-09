@@ -11,9 +11,8 @@ import com.elsevier.aq.annotations.AQAnnotation
  * The return type of this function is different from other functions.  
  * Instead of returning a Dataset[AQAnnotation] this function returns a Dataset[(AQAnnotation,Array[AQAnnotation])].
  */
-object Preceding {
+class Preceding(spark: SparkSession) {
    
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*

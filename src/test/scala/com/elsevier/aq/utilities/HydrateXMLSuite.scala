@@ -26,6 +26,10 @@ class HydrateXMLSuite extends FunSuite {
 
   import spark.implicits._
   
+  val GetAQAnnotations = new GetAQAnnotations(spark)
+  val FilterType = new FilterType(spark)
+  val HydrateXML = new HydrateXML(spark)
+  
   test("Check missing annotation file") {
       val aqAnnots: Dataset[AQAnnotation] = GetAQAnnotations(spark.read.parquet("./src/test/resources/genia/").as[CATAnnotation],numPartitions=2)
       val sentenceAnnots = FilterType(aqAnnots,"sentence")

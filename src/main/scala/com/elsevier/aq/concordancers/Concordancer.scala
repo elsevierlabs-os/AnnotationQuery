@@ -12,11 +12,10 @@ import com.elsevier.aq.annotations.AQAnnotation
 /**
  * Output the string of text identified by the AQAnnotation and highlight in 'red' the text that was ignored (excluded).
  */
-object Concordancer {
+class Concordancer(spark: SparkSession) {
 
   val logger = org.apache.log4j.LogManager.getLogger("Concordancer")
   
-  val spark = SparkSession.builder().getOrCreate()
   import spark.implicits._
   
   /*
