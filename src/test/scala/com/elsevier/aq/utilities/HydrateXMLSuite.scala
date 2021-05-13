@@ -13,7 +13,7 @@ import com.elsevier.aq.query.FilterType
 class HydrateXMLSuite extends FunSuite {
 
   val conf = new SparkConf()
-    .setAppName("GetAQAnnotationsSuite")
+    .setAppName("GetHydrateXMLSuite")
     .setMaster("local[2]")
 
   val spark = SparkSession.builder()
