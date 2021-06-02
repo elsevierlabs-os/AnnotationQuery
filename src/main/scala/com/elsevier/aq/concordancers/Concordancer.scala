@@ -118,13 +118,16 @@ class Concordancer(spark: SparkSession) {
                         txt
                       }
         
+        val sab = if (offset != 0) "<font color='green'> &gt; </font>" else ""
+        val eab = if (offset != 0) "<font color='green'> &lt; </font>" else ""
+        
         "<tr><td>" + li.docId+"</td>" + 
         "<td>" + li.annotSet+"</td>" +
         "<td>" + li.annotType+"</td><td><div style='word-break:break-all;'>" +
         str.substring(Math.max(0,(li.startOffset - offset).toInt), li.startOffset.toInt) + 
-        "<font color='green'> &gt; </font>" + 
+        sab + 
         modText + 
-        "<font color='green'> &lt; </font>"  + 
+        eab  + 
         str.substring(li.endOffset.toInt, Math.min(str.length,(li.endOffset + offset).toInt)) + 
         "</div></td></tr>"
        } catch {
