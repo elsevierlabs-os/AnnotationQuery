@@ -24,9 +24,12 @@ class Concordancer(spark: SparkSession) {
    * nrows - Number of results to display
    * offset - Number of characters before/after each annotation in results to display
    * highlightAnnotations - Dataset[AQAnnotation] that you would like to highlight in the results
+   * colorPropertyKey - Key in the property map of highlightAnnotations to get the value for the color lookup in the specified colorMap
+   * colorMap - Map the colorPropertyKey value to the specified color in the Map.  Default is blue when not found.
    */
     
-  def apply(results: Dataset[AQAnnotation], textPath: String, nrows:Integer=10, offset:Integer=0, highlightAnnotations:Dataset[AQAnnotation] =  spark.emptyDataset[AQAnnotation]): String = {
+  def apply(results: Dataset[AQAnnotation], textPath: String, nrows:Integer=10, offset:Integer=0, highlightAnnotations:Dataset[AQAnnotation] =  spark.emptyDataset[AQAnnotation],
+            colorPropertyKey: String = "", colorMap: Map[String,String] = Map.empty[String, String]): String = {
 
     val EXCLUDES = "excludes"
     
@@ -56,7 +59,7 @@ class Concordancer(spark: SparkSession) {
                           val entries:MutableList[(Long,Long,String,String)] = MutableList[(Long,Long,String,String)]()
 
                           // Add begin/end tag for the entry
-                          entries += ((rec.startOffset, rec.startOffset, "hl", "<font color='blue'>"))
+                          entries += ((rec.startOffset, rec.startOffset, "hl", "<font color='" + colorMap.getOrElse(rec.properties.getOrElse(Map.empty).getOrElse(colorPropertyKey,""),"blue") + "'>"))
                           entries += ((rec.endOffset, rec.endOffset, "hl", "</font>"))
 
                           entries.toIterator
