@@ -16,7 +16,7 @@ case class CATAnnotation(docId: String,                 // Document Id (PII)
                          annotType: String,             // Annotation type (such as text, sentence)
                          startOffset: Long,             // Starting offset for the annotation                          
                          endOffset: Long,               // Ending offset for the annotation                          
-                         annotId: Long,                 // Annotation Id 
+                         annotId: Long,                 // Annotation Id
                          other: Option[String] = None)  // Contains any attributes  (name-value pairs ampersand delimited)
 ```
 
@@ -34,7 +34,7 @@ case class AQAnnotation(docId: String,                                   // Docu
 
 #### Utilities
 
-The GetAQAnnotation and GetCATAnnotation and utility classes have been developed to create an AQAnnotation from the archive format (CATAnnotation) and vise versa.  These are both defined in the com.elsevier.aq.utilities package. When creating the AQAnnotation,  the ampersand separated string of name-value pairs in the CATAnnotation other field is mapped to a Map in the AQAnnotation record.  To minimize memory consumption and increase performance, you can specify which name-value pairs to include in the Map.  For usage examples, view the GetAQAnnotation and GetCATAnnotation classes in the test package.
+The GetAQAnnotation and GetCATAnnotation and utility classes have been developed to create an AQAnnotation from the archive format (CATAnnotation) and vise versa.  These are both defined in the com.elsevier.aq.utilities package. When creating the AQAnnotation,  the ampersand separated string of name-value pairs in the CATAnnotation other field is mapped to a Map in the AQAnnotation record.  To minimize memory consumption and increase performance, you can specify which name-value pairs to include in the Map as well as which ones to decode or lower case.  if you want all name-value pairs to be included in the map, simply specify a value of Array("*") for the parameter in the function.  For usage examples, view the GetAQAnnotation and GetCATAnnotation classes in the test package.
 
 
 #### AnnotationQuery Functions
@@ -53,6 +53,9 @@ The following functions are currently provided by AnnotationQuery. Since functio
 
 **ContainedIn**  -  Provide the ability to find annotations that are contained by another annotation. The input is 2 Datasets of AQAnnotations. We will call them A and B. The purpose is to find those annotations in A that are contained in B. What that means is the start/end offset for an annotation from A must be contained by the start/end offset from an annotation in B. We of course have to also match on the document id. We ultimately return the contained annotations (A) that meet this criteria. There is also the option of negating the query (think Not Contains) so that we return only A where it is not contained in B.
 
+**ContainedInList**  -  Provide the ability to find annotations that are contained by another annotation.  The input is 2 Datasets of AQAnnotations.  We will call them A and B.  The purpose is to find those annotations in A that are contained in B.  What that means is the start/end offset for an annotation from A  must be contained by the start/end offset from an annotation in  B. We of course have to also match on the document id. We ultimately return a Dataset with 2 fields where the first field is an annotation from B and the second field is an array of entries from A
+that are contained in the first entry.
+
 **Before**  -  Provide the ability to find annotations that are before another annotation. The input is 2 Datasets of AQAnnotations. We will call them A and B. The purpose is to find those annotations in A that are before B. What that means is the end offset for an annotation from A must be before the start offset from an annotation in B. We of course have to also match on the document id. We ultimately return the A annotations that meet this criteria. A distance operator can also be optionally specified. This would require an A annotation (endOffset) to occur n characters (or less) before the B annotation (startOffset). There is also the option of negating the query (think Not Before) so that we return only A where it is not before B.
 
 **After**  -  Provide the ability to find annotations that are after another annotation. The input is 2 Datasets of AQAnnotations. We will call them A and B. The purpose is to find those annotations in A that are after B. What that means is the start offset for an annotation from A must be after the end offset from an annotation in B. We of course have to also match on the document id. We ultimately return the A annotations that meet this criteria. A distance operator can also be optionally specified. This would require an A annotation (startOffset) to occur n characters (or less) after the B annotation (endOffset). There is also the option of negating the query (think Not After) so that we return only A where it is not after B.
@@ -70,6 +73,10 @@ The following functions are currently provided by AnnotationQuery. Since functio
 **Preceding**  -  Return the preceding sibling annotations for every annotation in the anchor Dataset[AQAnnotations]. The preceding sibling annotations can optionally be required to be contained in a container Dataset[AQAnnotations]. The return type of this function is different from other functions. Instead of returning a Dataset[AQAnnotation] this function returns a Dataset[(AQAnnotation,Array[AQAnnotation])].
 
 **Following**  -  Return the following sibling annotations for every annotation in the anchor Dataset[AQAnnotations]. The following sibling annotations can optionally be required to be contained in a container Dataset[AQAnnotations]. The return type of this function is different from other functions. Instead of returning a Dataset[AQAnnotation] this function returns a Dataset[(AQAnnotation,Array[AQAnnotation])].
+
+**TokensSpan**  -  Provides the ability to create a string from a list of tokens that are contained in a span. The specified tokenProperty is used to extract the values from the tokens when creating the string. For SCNLP, this tokenProperty could be values like 'orig', 'lemma', or 'pos'. The spans would typically be a SCNLP 'sentence' or could even be things like an OM 'ce:para'.  Returns a Dataset[AQAnnotation] spans with 3 new properties all prefixed with the specified tokenProperty value followed by (ToksStr, ToksSpos, ToksEpos) The ToksStr property will be the concatenated string of token property values contained in the span. The ToksSPos and ToksEpos are properties that will help us determine the start/end offset for each of the individual tokens in the ToksStr. These helper properties are needed for the function RegexTokensSpan so we can generate accurate accurate start/end offsets based on the str file.
+
+**RegexTokensSpan**  -  Provides the ability to apply a regular expression to the concatenated string generated by TokensSpan. For the strings matching the regex, a Dataset[AQAnnotations] will be returned.  The AQAnnotation will correspond to the offsets within the concatenated string containing the match.
 
 
 #### Concordancers
@@ -90,4 +97,3 @@ If you need to cite AnnotationQuery in your work, please use the following DOI:
 [![DOI](https://zenodo.org/badge/99150085.svg)](https://zenodo.org/badge/latestdoi/99150085)
 
 McBeath, Darin (2017). AnnotationQuery [Computer Software];https://github.com/elsevierlabs-os/AnnotationQuery
-

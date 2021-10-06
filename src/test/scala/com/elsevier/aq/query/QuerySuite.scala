@@ -41,6 +41,8 @@ class QuerySuite extends FunSuite {
   val MatchProperty = new MatchProperty(spark)
   val Preceding = new Preceding(spark)
   val Following = new Following(spark)
+  val TokensSpan = new TokensSpan(spark)
+  val RegexTokensSpan = new RegexTokensSpan(spark)
   
   // Original Markup Annotations
   val omAnnots: Dataset[AQAnnotation] = GetAQAnnotations(spark.read.parquet("./src/test/resources/om/").as[CATAnnotation], Array("orig"), Array("orig"), Array("orig"))
@@ -297,6 +299,27 @@ class QuerySuite extends FunSuite {
     assert(result(0)._1 == AQAnnotation("S0022314X13001777","ge","sentence",19649,19739,59,None))
     assert(result(0)._2.isEmpty == true)
   }
+  
+  // Test TokensSpan
+  
+  test("TokensSpan(geniaTokens,geniaSentences,'orig')") {
+    val geniaSentences = FilterType(geniaAnnots,"sentence")
+    val geniaTokens = FilterType(geniaAnnots,"word")
+    val result = TokensSpan(geniaTokens,geniaSentences,"orig").collect().sortBy{ x => (x.startOffset)}
+    assert(result.size == 128)
+    assert(result(0) == AQAnnotation("S0022314X13001777","ge","sentence",18546,18607,1,Some(Map("origToksStr" -> "Sylow p-groups of polynomial permutations on the integers mod", "origToksSpos" -> "0|18546 6|18552 15|18561 18|18564 29|18575 42|18588 45|18591 49|18595 58|18604", "origToksEpos" -> "5|18551 14|18560 17|18563 28|18574 41|18587 44|18590 48|18594 57|18603 61|18607"))))
+  }
+  
+  // Test RegexTokensSpan
+  test("RegexTokensSpan(tokensSpan, 'orig', raw'(?i)(?<= |^)poly[a-z]+ perm[a-z]+(?= |$$)','newset','newType')") {
+    val geniaSentences = FilterType(geniaAnnots,"sentence")
+    val geniaTokens = FilterType(geniaAnnots,"word")
+    val tokensSpan = TokensSpan(geniaTokens,geniaSentences,"orig")
+    val result = RegexTokensSpan(tokensSpan, "orig", raw"(?i)(?<= |^)poly[a-z]+ perm[a-z]+(?= |$$)","newSet","newType").collect().sortBy{ x => (x.startOffset)}
+    assert(result.size ==  18)
+    assert(result(0) == AQAnnotation("S0022314X13001777","newSet","newType",18564,18587,1,Some(Map("origMatch" -> "polynomial permutations"))))
+  }
+
 
   
 }
