@@ -18,12 +18,13 @@ class OrigPosLemConcordancer(spark: SparkSession) {
   
   import spark.implicits._
   
-  /*
-   * sentences - Sentence annotations that you would like to display.  
-   * annots - The Dataset of AQAnnotations that will contain the the AQAnnotations (orig, lemma, pos) for the above sentences
-   * textPath - Path for the str files.  The sentence annotations must be for documents contained in these str files.
-   * wordType -The annotType that identies the AQAnnotation in the above annotations.
-   * nrows - Number of sentences to display
+  /**
+   * @param sentences Sentence annotations that you would like to display.  
+   * @param annots Dataset of AQAnnotations that will contain the the AQAnnotations (orig, lemma, pos) for the above sentences
+   * @param textPath Path for the str files.  The sentence annotations must be for documents contained in these str files.
+   * @param wordType The annotType that identies the AQAnnotation in the above annotations.
+   * @param nrows Number of sentences to display
+   * @return String of html
   */
 
   def apply(sentences: Dataset[AQAnnotation], annots:Dataset[AQAnnotation],  textPath: String, wordType:String="word", nrows:Integer=10): String = {

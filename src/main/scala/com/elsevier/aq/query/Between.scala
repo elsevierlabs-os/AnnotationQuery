@@ -16,13 +16,14 @@ class Between(spark: SparkSession) {
     
   import spark.implicits._
   
-  /*
-   * middle - Dataset of AQAnnotations, the ones we will return if they are between AQAnnotations from 'left' and AQAnnotations from 'right.
-   * left - Dataset of AQAnnotations, the ones we are looking to see if they are before AQAnnotations from 'middle'.
-   * right - Dataset of AQAnnotations, the ones we are looking to see if they are after AQAnnotations from 'middle'.
-   * dist  - Number of characters  where startOffset from 'middle' must occur after endOffset of 'left' or endOffset from 'middle' must occur before startOffset of 'right'
-   * limit - Number of AQAnnotations to return.
-   * not - Whether to negate the entire query (think NOT between).  Default is false.
+  /**
+   * @param middle Dataset of AQAnnotations, the ones we will return if they are between AQAnnotations from 'left' and AQAnnotations from 'right.
+   * @param left Dataset of AQAnnotations, the ones we are looking to see if they are before AQAnnotations from 'middle'.
+   * @param right Dataset of AQAnnotations, the ones we are looking to see if they are after AQAnnotations from 'middle'.
+   * @param dist  Number of characters  where startOffset from 'middle' must occur after endOffset of 'left' or endOffset from 'middle' must occur before startOffset of 'right'
+   * @param limit Number of AQAnnotations to return.
+   * @param not Whether to negate the entire query (think NOT between).  Default is false.
+   * @return Dataset[AQAnnotation]
   */
 
   def apply(middle: Dataset[AQAnnotation], left: Dataset[AQAnnotation], right: Dataset[AQAnnotation], dist:Int=Int.MaxValue, limit:Integer=0, not:Boolean=false): Dataset[AQAnnotation] = {

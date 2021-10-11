@@ -18,10 +18,11 @@ class GetCATAnnotations(spark: SparkSession) {
   
   import spark.implicits._
   
-  /*
-   * aqAnnotations - Dataset of AQAnnotations to convert to Dataset of CATAnnotations
-   * props - Array of property names  to make name-value pairs in the other column of CATAnnotation.
-   * encodeProps - Array of property names  to url encode the value when making name-value pairs in the other column of CATAnnotation.
+  /**
+   * @param aqAnnotations Dataset of AQAnnotations to convert to Dataset of CATAnnotations
+   * @param props Array of property names  to make name-value pairs in the other column of CATAnnotation.
+   * @param encodeProps Array of property names  to url encode the value when making name-value pairs in the other column of CATAnnotation.
+   * @return Dataset[CATAnnotation]
   */
 
   def apply(aqAnnotations:Dataset[AQAnnotation],  props:Array[String]=Array.empty[String], encodeProps:Array[String]=Array.empty[String]): Dataset[CATAnnotation] = {

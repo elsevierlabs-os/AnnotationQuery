@@ -19,10 +19,11 @@ import org.apache.spark.sql.Row
     
     import spark.implicits._
   
-    /*
-     * tokens - Dataset of AQAnnotations (which we will use to concatenate for the string)
-     * spans - Dataset of AQAnnotations (identifies the start/end for the tokens to be used for the concatenated string)
-     * tokenProperty - The property field in the tokens to use for extracting the value for the concatenated string
+    /**
+     * @param tokens Dataset of AQAnnotations (which we will use to concatenate for the string)
+     * @param spans Dataset of AQAnnotations (identifies the start/end for the tokens to be used for the concatenated string)
+     * @param tokenProperty The property field in the tokens to use for extracting the value for the concatenated string
+     * @return Dataset[AQAnnotation]
     */
     def apply(tokens: Dataset[AQAnnotation], spans: Dataset[AQAnnotation], tokenProperty: String): Dataset[AQAnnotation] = {
       

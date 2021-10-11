@@ -11,12 +11,13 @@ class RegexProperty(spark: SparkSession) {
   
   import spark.implicits._
   
-  /*
-   * ds -  Dataset of AQAnnotations that will be filtered by the specified property name and regex expression.
-   * name - Name of the property to filter.
-   * regex - Regex expression to use for the filter.
-   * limit - Number of AQAnnotations to return.
-   * not - Whether to negate the entire query. Default is false.
+  /**
+   * @param ds Dataset of AQAnnotations that will be filtered by the specified property name and regex expression.
+   * @param name Name of the property to filter.
+   * @param regex Regex expression to use for the filter.
+   * @param limit Number of AQAnnotations to return.
+   * @param not Whether to negate the entire query. Default is false.
+   * @return Dataset[AQAnnotation]
   */
 
   def apply(ds: Dataset[AQAnnotation], name:String, regex:String, limit:Integer=0, not:Boolean=false): Dataset[AQAnnotation] = {

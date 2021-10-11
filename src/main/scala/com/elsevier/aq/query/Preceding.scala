@@ -15,11 +15,12 @@ class Preceding(spark: SparkSession) {
    
   import spark.implicits._
   
-  /*
-   * annot - Dataset of AQAnnotations, the ones we will be using to look for preceding sibling annotations. 
-   * anchor - Dataset of AQAnnotations  starting point for using to look for preceding sibling annotations (use the startOffset and docId).
-   * container - Dataset of AQAnnotations to use when requiring the preceding sibling annotations to be contained in a specific annotation.
-   * cnt - Number of preceding sibling AQAnnotations to return.
+  /**
+   * @param annot Dataset of AQAnnotations, the ones we will be using to look for preceding sibling annotations. 
+   * @param anchor Dataset of AQAnnotations  starting point for using to look for preceding sibling annotations (use the startOffset and docId).
+   * @param container Dataset of AQAnnotations to use when requiring the preceding sibling annotations to be contained in a specific annotation.
+   * @param cnt Number of preceding sibling AQAnnotations to return.
+   * @return Dataset[AQAnnotation,Array[AQAnnotation]]
   */
 
   def apply(annot: Dataset[AQAnnotation], 

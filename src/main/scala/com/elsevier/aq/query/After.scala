@@ -15,12 +15,13 @@ class After(spark: SparkSession) {
    
   import spark.implicits._
   
-  /*
-   * left - Dataset of AQAnnotations, the ones we will return if they are after AQAnnotations from 'right'.
-   * right - Dataset of AQAnnotations, the ones we are looking to see if are before AQAnnotations from 'left'.
-   * dist  - Number of characters  where startOffset from 'left' must occur after endOffset from 'right'. Default is Int.MaxValue.
-   * limit - Number of AQAnnotations to return.
-   * not - Whether to negate the entire query (think NOT after).  Default is false.
+  /**
+   * @param left Dataset of AQAnnotations, the ones we will return if they are after AQAnnotations from 'right'.
+   * @param right Dataset of AQAnnotations, the ones we are looking to see if are before AQAnnotations from 'left'.
+   * @param dist  Number of characters  where startOffset from 'left' must occur after endOffset from 'right'. Default is Int.MaxValue.
+   * @param limit Number of AQAnnotations to return.
+   * @param not Whether to negate the entire query (think NOT after).  Default is false.
+   * @return Dataset[AQAnnotation]
   */
 
   def apply(left: Dataset[AQAnnotation], right: Dataset[AQAnnotation], dist:Int=Int.MaxValue, limit:Integer=0, not:Boolean=false): Dataset[AQAnnotation] = {

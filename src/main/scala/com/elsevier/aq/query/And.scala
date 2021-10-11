@@ -12,12 +12,13 @@ class And(spark: SparkSession) {
    
   import spark.implicits._
   
-  /*
-   * left - Dataset of AQAnnotations
-   * right - Dataset of AQAnnotations.
-   * limit - Number of AQAnnotations to return.
-   * not - think and NOT (only return annotations from A that are not in B).  Default is false.
-   * leftOnly - Reuturn only the left or the left and right.  The default is to only return the left.
+  /**
+   * @param left Dataset of AQAnnotations
+   * @param right Dataset of AQAnnotations.
+   * @param limit Number of AQAnnotations to return.
+   * @param not Think and NOT (only return annotations from A that are not in B).  Default is false.
+   * @param leftOnly Reuturn only the left or the left and right.  The default is to only return the left.
+   * @return Dataset[AQAnnotation]
   */
   
   def apply(left: Dataset[AQAnnotation], right: Dataset[AQAnnotation], limit:Integer=0, not:Boolean=false, leftOnly:Boolean=true): Dataset[AQAnnotation] = {

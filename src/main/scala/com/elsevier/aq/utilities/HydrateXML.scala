@@ -17,10 +17,11 @@ class HydrateXML(spark: SparkSession)  {
   
   import spark.implicits._
   
-  /*
-   * ds - The Dataset of Annotations that we want to populate the xml property with the xml for this annotation
-   * textPath - Path the str files.  The str files for the documents in the ds annotations must be found here.
-   * om - The Dataset of OM Annotations (xml markup)
+  /**
+   * @param ds The Dataset of Annotations that we want to populate the xml property with the xml for this annotation
+   * @param textPath Path the str files.  The str files for the documents in the ds annotations must be found here.
+   * @param om The Dataset of OM Annotations (xml markup)
+   * @return Dataset[AQAnnotation]
   */
   def apply(ds: Dataset[AQAnnotation], textPath: String, om: Dataset[AQAnnotation]): Dataset[AQAnnotation] = {
     

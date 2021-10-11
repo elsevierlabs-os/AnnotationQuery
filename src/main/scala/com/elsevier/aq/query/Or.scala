@@ -11,10 +11,11 @@ class Or(spark: SparkSession) {
     
   import spark.implicits._
   
-  /*
-   * left - Dataset of AQAnnotations
-   * right - Dataset of AQAnnotations
-   * limit - Number of AQAnnotations to return.
+  /**
+   * @param left Dataset of AQAnnotations
+   * @param right Dataset of AQAnnotations
+   * @param limit Number of AQAnnotations to return.
+   * @return Dataset[AQAnnotation]
   */
 
   def apply(left: Dataset[AQAnnotation], right: Dataset[AQAnnotation], limit:Integer=0): Dataset[AQAnnotation] = {

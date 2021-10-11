@@ -19,12 +19,13 @@ class GetAQAnnotations(spark: SparkSession) {
   
   import spark.implicits._
   
-  /*
-   * catAnnots - Dataset[CATAnnotation].
-   * props - Array of property names  (from the name-value pairs in the other column in CATAnnotation) that you would like populated in the AQAnnotation Map of properties.
-   * lcProps - Array of property names where the value should be lower cased when populating the AQAnnotation Map of properties.
-   * decodeProps - Array of property names where the value should be url decoded when populating the AQAnnotation Map of properties.
-   * numPartitions - Number of partitions for the Dataset[AQAnnotation].
+  /**
+   * @param catAnnots Dataset[CATAnnotation].
+   * @param props Array of property names  (from the name-value pairs in the other column in CATAnnotation) that you would like populated in the AQAnnotation Map of properties.
+   * @param lcProps Array of property names where the value should be lower cased when populating the AQAnnotation Map of properties.
+   * @param decodeProps Array of property names where the value should be url decoded when populating the AQAnnotation Map of properties.
+   * @param numPartitions Number of partitions for the Dataset[AQAnnotation].
+   * @return Dataset[AQAnnotation]
   */
 
   def apply(catAnnots:Dataset[CATAnnotation],  props:Array[String]=Array.empty[String], lcProps:Array[String]=Array.empty[String], decodeProps:Array[String]=Array.empty[String], numPartitions:Int=spark.conf.get("spark.sql.shuffle.partitions").toInt): Dataset[AQAnnotation] = {

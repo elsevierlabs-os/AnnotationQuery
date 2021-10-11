@@ -14,9 +14,10 @@ class XPath(spark: SparkSession)  {
   
   import spark.implicits._
   
-  /*
-   * ds - The Dataset of OM Annotations that we want to populate the xpath property for this om annotation
-   * omBase - Path for the individual OM annotation files.  The OM files for the documents in the ds annotations must be found here.
+  /**
+   * @param ds The Dataset of OM Annotations that we want to populate the xpath property for this om annotation
+   * @param omBase Path for the individual OM annotation files.  The OM files for the documents in the ds annotations must be found here.
+   * @return Dataset[AQAnnotation]
   */
   def apply(ds: Dataset[AQAnnotation], omBase: String): Dataset[AQAnnotation] = {
     

@@ -14,11 +14,12 @@ class ContainedIn(spark: SparkSession) {
   
   import spark.implicits._
   
-  /*
-   * left - Dataset of AQAnnotations, the ones we will return if they are contained in AQAnnotations from 'right'.
-   * right - Dataset of AQAnnotations, the ones we are looking to see if they contain AQAnnotations from 'left'.
-   * limit - Number of AQAnnotations to return.
-   * not - Whether to negate the entire query (think NOT contained in).  Default is false.
+  /**
+   * @param left Dataset of AQAnnotations, the ones we will return if they are contained in AQAnnotations from 'right'.
+   * @param right Dataset of AQAnnotations, the ones we are looking to see if they contain AQAnnotations from 'left'.
+   * @param limit Number of AQAnnotations to return.
+   * @param not Whether to negate the entire query (think NOT contained in).  Default is false.
+   * @return Dataset[AQAnnotation]
   */
   
   def apply(left: Dataset[AQAnnotation], right: Dataset[AQAnnotation], limit:Integer=0, not:Boolean=false): Dataset[AQAnnotation] = {

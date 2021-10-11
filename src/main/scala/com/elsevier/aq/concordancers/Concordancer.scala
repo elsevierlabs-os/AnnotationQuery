@@ -18,14 +18,15 @@ class Concordancer(spark: SparkSession) {
   
   import spark.implicits._
   
-  /*
-   * results - Dataset[AQAnnotation] that you would like to display.  
-   * textPath - Path for the str files.  The annotations in results must be for documents contained in these str files.
-   * nrows - Number of results to display
-   * offset - Number of characters before/after each annotation in results to display
-   * highlightAnnotations - Dataset[AQAnnotation] that you would like to highlight in the results
-   * colorPropertyKey - Key in the property map of highlightAnnotations to get the value for the color lookup in the specified colorMap
-   * colorMap - Map the colorPropertyKey value to the specified color in the Map.  Default is blue when not found.
+  /**
+   * @param results Dataset[AQAnnotation] that you would like to display.  
+   * @param textPath Path for the str files.  The annotations in results must be for documents contained in these str files.
+   * @param nrows Number of results to display
+   * @param offset Number of characters before/after each annotation in results to display
+   * @param highlightAnnotations Dataset[AQAnnotation] that you would like to highlight in the results
+   * @param colorPropertyKey Key in the property map of highlightAnnotations to get the value for the color lookup in the specified colorMap
+   * @param colorMap Map the colorPropertyKey value to the specified color in the Map.  Default is blue when not found.
+   * @return String of html
    */
     
   def apply(results: Dataset[AQAnnotation], textPath: String, nrows:Integer=10, offset:Integer=0, highlightAnnotations:Dataset[AQAnnotation] =  spark.emptyDataset[AQAnnotation],

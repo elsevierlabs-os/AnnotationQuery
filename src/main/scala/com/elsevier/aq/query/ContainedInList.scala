@@ -16,9 +16,10 @@ package com.elsevier.aq.query
     
     import spark.implicits._
   
-    /*
-     * left - Dataset of AQAnnotations, the ones we will return (as a list) if they are contained in AQAnnotations from 'right'.
-     * right - Dataset of AQAnnotations, the ones we are looking to see if they contain AQAnnotations from 'left'.
+    /**
+     * @param left Dataset of AQAnnotations, the ones we will return (as a list) if they are contained in AQAnnotations from 'right'.
+     * @param right Dataset of AQAnnotations, the ones we are looking to see if they contain AQAnnotations from 'left'.
+     * @return Dataset[AQAnnotation,Array[AQAnnotation]]
      */
     def apply(left: Dataset[AQAnnotation], right: Dataset[AQAnnotation]): Dataset[(AQAnnotation,Array[AQAnnotation])] = {
     

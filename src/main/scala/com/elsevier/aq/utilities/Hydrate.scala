@@ -18,10 +18,11 @@ class Hydrate(spark: SparkSession)  {
   
   import spark.implicits._
   
-  /*
-   * ds - The Dataset of Annotations that we want to populate the text property with the text for this annotation
-   * textPath - Path the str files.  The str files for the documents in the ds annotations must be found here.
-   * excludes - Whether we want to include the 'excludes' text.  True means exclude the excluded text.
+  /**
+   * @param ds The Dataset of Annotations that we want to populate the text property with the text for this annotation
+   * @param textPath Path the str files.  The str files for the documents in the ds annotations must be found here.
+   * @param excludes Whether we want to include the 'excludes' text.  True means exclude the excluded text.
+   * @return Dataset[AQAnnotation]
   */
   def apply(ds: Dataset[AQAnnotation], textPath: String, excludes: Boolean=true): Dataset[AQAnnotation] = {
     

@@ -16,13 +16,14 @@ import java.util.regex.Matcher
     
     import spark.implicits._
   
-    /*
-     * tokensSpan - Dataset of AQAnnotations (the annotations returned from the TokensSpan function)
-     * prop - the property name (orig, lemma, pos) that was used to generate the string for the span in TokensSpan
-     * regex - the regular expression to apply to the span
-     * annotSet - the value to assign to annotSet for the returned matched annotations (default will be the annotSet from the tokensSpan)
-     * annotType - the value to assign to annotType for the returned matched annotations (default will be the annotType from the tokensSpan)
-     * annotProps - the additional properties to append to the properties map for the returned matched annotations 
+    /**
+     * @param tokensSpan Dataset of AQAnnotations (the annotations returned from the TokensSpan function)
+     * @param prop Property name (orig, lemma, pos) that was used to generate the string for the span in TokensSpan
+     * @param regex Regular expression to apply to the span
+     * @param annotSet Value to assign to annotSet for the returned matched annotations (default will be the annotSet from the tokensSpan)
+     * @param annotType Value to assign to annotType for the returned matched annotations (default will be the annotType from the tokensSpan)
+     * @param annotProps Additional properties to append to the properties map for the returned matched annotations 
+     * @return Dataset[AQAnnotation]
     */
     def apply(tokensSpan: Dataset[AQAnnotation], prop:String, regex: String, annotSet: String = "", annotType: String = "", annotProps: Map[String,String] = Map[String, String]()): Dataset[AQAnnotation] = {
       

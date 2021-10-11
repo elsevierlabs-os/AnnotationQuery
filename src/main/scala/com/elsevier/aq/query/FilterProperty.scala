@@ -12,14 +12,15 @@ class FilterProperty(spark: SparkSession) {
   
   import spark.implicits._
   
-  /*
-   * ds - Dataset of AQAnnotations that will be filtered by the specified property name and value.
-   * name - Name of the property to filter.
-   * value - Value of the named property to filter.
-   * valueArr - The array of values of the named property  to filter. An OR will be applied to the Strings. Only used if value was not specified.
-   * valueCompare - Comparison operator to use for the property filter. Default is '='. Possible values are '=' and '!=' when valueArr specified. Possible values are '=','!=','<','<=','>', and '>=' otherwise.
-   * limit - Number of AQAnnotations to return.
-   * not - Whether to negate the entire query. Default is false.
+  /**
+   * @param ds Dataset of AQAnnotations that will be filtered by the specified property name and value.
+   * @param name Name of the property to filter.
+   * @param value Value of the named property to filter.
+   * @param valueArr The array of values of the named property  to filter. An OR will be applied to the Strings. Only used if value was not specified.
+   * @param valueCompare Comparison operator to use for the property filter. Default is '='. Possible values are '=' and '!=' when valueArr specified. Possible values are '=','!=','<','<=','>', and '>=' otherwise.
+   * @param limit Number of AQAnnotations to return.
+   * @param not Whether to negate the entire query. Default is false.
+   * @return Dataset[AQAnnotation]
   */
 
   def apply(ds: Dataset[AQAnnotation], name:String, value:String="", valueArr:Array[String]=Array.empty[String], valueCompare:String="=", limit:Integer=0, not:Boolean=false): Dataset[AQAnnotation] = {
