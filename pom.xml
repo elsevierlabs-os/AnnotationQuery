@@ -94,7 +94,7 @@
     <dependency>
       <groupId>com.elsevier</groupId>
       <artifactId>annotation-query-local-spark3</artifactId>
-      <version>1.0.5</version>
+      <version>1.0.7</version>
     </dependency>
   </dependencies>
 
