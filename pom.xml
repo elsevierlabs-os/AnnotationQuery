@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.elsevier</groupId>
   <artifactId>annotation-query-spark3</artifactId>
-  <version>1.0.8</version>
+  <version>1.0.9</version>
 
   <developers>
     <developer>
@@ -94,7 +94,7 @@
     <dependency>
       <groupId>com.elsevier</groupId>
       <artifactId>annotation-query-local-spark3</artifactId>
-      <version>1.0.8</version>
+      <version>1.0.9</version>
     </dependency>
   </dependencies>
 
