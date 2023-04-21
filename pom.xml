@@ -26,7 +26,7 @@
     <scala.binary.version>2.12</scala.binary.version>
     <scalatest.version>3.0.1</scalatest.version>
     <junit.version>4.13.1</junit.version>
-    <spark.version>3.0.0</spark.version>
+    <spark.version>3.4.0</spark.version>
   </properties>
 
   <repositories>
